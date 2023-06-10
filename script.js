@@ -26,6 +26,7 @@ function startCronometro() {
 
 // Timer
 let timerDisplay = document.getElementById('timerDisplay');
+let stopButton;
 
 function impostaTimer() {
   let ore = parseInt(document.getElementById('ore').value) || 0;
@@ -45,6 +46,8 @@ function impostaTimer() {
     if (totaleSecondi <= 0) {
       clearInterval(timer);
       timerDisplay.textContent = 'Tempo scaduto!';
+      riproduciMessaggioVocale('Timer finito!');
+      generaNuovoPulsanteStop();
     } else {
       let h = Math.floor(totaleSecondi / 3600);
       let m = Math.floor((totaleSecondi % 3600) / 60);
@@ -53,4 +56,16 @@ function impostaTimer() {
       timerDisplay.textContent = `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     }
   }, 1000);
+}
+
+function riproduciMessaggioVocale(messaggio) {
+  let synthesis = window.speechSynthesis;
+  let utterance = new SpeechSynthesisUtterance(messaggio);
+  synthesis.speak(utterance);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+  timerDisplay.textContent = '';
+  document.body.removeChild(stopButton);
 }

@@ -2,10 +2,11 @@
 let cronometro;
 let cronometroDisplay = document.getElementById('cronometroDisplay');
 
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+
 function startCronometro() {
-  let seconds = 0;
-  let minutes = 0;
-  let hours = 0;
 
   cronometro = setInterval(() => {
     seconds++;
@@ -22,6 +23,11 @@ function startCronometro() {
 
     cronometroDisplay.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }, 1000);
+}
+
+function stopCronometro() {
+  clearInterval(cronometro);
+  cronometro = null; // Imposta la variabile a null per indicare che è stato fermato temporaneamente
 }
 
 // Timer

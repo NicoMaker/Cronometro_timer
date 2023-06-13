@@ -66,7 +66,6 @@ function impostaTimer() {
       clearInterval(timer);
       timerDisplay.textContent = 'Tempo scaduto!';
       riproduciMessaggioVocale('Timer finito!');
-      generaNuovoPulsanteStop();
     } else {
       let h = Math.floor(totaleSecondi / 3600);
       let m = Math.floor((totaleSecondi % 3600) / 60);

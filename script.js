@@ -30,6 +30,19 @@ function stopCronometro() {
   cronometro = null; // Imposta la variabile a null per indicare che è stato fermato temporaneamente
 }
 
+function Reset()
+{
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+
+  clearInterval(cronometro);
+  cronometro = null;
+  cronometroDisplay.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;;
+
+  return seconds,minutes,hours;
+}
+
 // Timer
 let timerDisplay = document.getElementById('timerDisplay');
 let stopButton;
